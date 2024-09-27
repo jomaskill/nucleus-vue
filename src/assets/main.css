@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#app {
+  margin: 0 auto;
+  font-weight: normal;
+}
+
+a:hover, a:visited, a:link, a:active
+{
+  text-decoration: none;
+  color: unset;
+}
