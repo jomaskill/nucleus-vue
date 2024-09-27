@@ -13,7 +13,8 @@ export default {
         'border-color': '#1a242e',
         'icon-color': '#3b949f',
         'icon-hover-color': '#161e26',
-        'header-text-color': '#505a72'
+        'header-text-color': '#505a72',
+        'nucleus-light-green': '#3a95a0',
       },
     },
   },
