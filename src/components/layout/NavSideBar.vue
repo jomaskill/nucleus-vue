@@ -2,7 +2,6 @@
 import SidebarButton from '@/components/base/SidebarButton.vue'
 import NucleusIcon from '@/components/icons/NucleusIcon.vue'
 import { usePagesStore } from '@/stores/pages.js'
-
 </script>
 
 <template>

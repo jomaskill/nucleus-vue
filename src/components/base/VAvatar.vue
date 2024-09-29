@@ -12,8 +12,10 @@ defineProps({
 </script>
 
 <template>
-  <div class="rounded-full h-8 w-8 bg-nucleus-light-green flex justify-center items-center text-white">
-    <img v-if="image" :src="image" alt="User Photo">
+  <div
+    class="rounded-full h-8 w-8 bg-nucleus-light-green flex justify-center items-center text-white"
+  >
+    <img v-if="image" :src="image" alt="User Photo" />
     <span v-else>{{ initials }}</span>
   </div>
 </template>

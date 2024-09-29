@@ -4,12 +4,11 @@ import { computed } from 'vue'
 import NonBlankPage from '@/layouts/NonBlankPage.vue'
 
 // Access the current route
-const route = useRoute();
+const route = useRoute()
 
 const layout = computed(() => {
-  return route.meta.layout || NonBlankPage;
-});
-
+  return route.meta.layout || NonBlankPage
+})
 </script>
 
 <template>

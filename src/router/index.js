@@ -22,29 +22,23 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: LoginView,
-      meta: { layout: BlankPage },
-    },
+      meta: { layout: BlankPage }
+    }
   ]
 })
 
 router.beforeEach(async (to) => {
-  console.log(!useAuthStore().isAuthenticated);
+  console.log(!useAuthStore().isAuthenticated)
 
-  if (!useAuthStore().isAuthenticated){
-    await useAuthStore().fetchUser();
+  if (!useAuthStore().isAuthenticated) {
+    await useAuthStore().fetchUser()
   }
 
-  if (
-    !useAuthStore().isAuthenticated &&
-    to.name !== 'login'
-  ) {
+  if (!useAuthStore().isAuthenticated && to.name !== 'login') {
     return { name: 'login' }
   }
 
-  if (
-    useAuthStore().isAuthenticated && to.name === 'login'
-
-  ) {
+  if (useAuthStore().isAuthenticated && to.name === 'login') {
     return { name: 'dashboard' }
   }
 })
