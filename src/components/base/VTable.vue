@@ -1,3 +1,17 @@
+<script setup>
+  defineProps({
+    data: {
+      type: Array,
+      required: true
+    },
+    columns: {
+      type: Array,
+      required: true
+    }
+  });
+</script>
+
+
 <template>
   <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg bg-white">
     <div class="px-6 py-2 inline-flex justify-between w-full">
@@ -8,54 +22,25 @@
       <thead class="">
         <tr>
           <th
+            v-for="column in columns"
+            :key="column"
             scope="col"
             class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
           >
-            Name
-          </th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-            Title
-          </th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-            Email
-          </th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-            Role
-          </th>
-          <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
-            <span class="sr-only">Edit</span>
+            {{ column.label }}
           </th>
         </tr>
       </thead>
       <tbody class="divide-y divide-gray-200 bg-white">
-        <tr v-for="person in people" :key="person.email">
-          <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-            {{ person.name }}
-          </td>
-          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ person.title }}</td>
-          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ person.email }}</td>
-          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ person.role }}</td>
+        <tr v-for="item in data" :key="item.id">
           <td
-            class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6"
-          >
-            <a href="#" class="text-indigo-600 hover:text-indigo-900"
-              >Edit<span class="sr-only">, {{ person.name }}</span></a
-            >
+            v-for="column in columns"
+            :key="column"
+            class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+            {{ item[column.value] }}
           </td>
         </tr>
       </tbody>
     </table>
   </div>
 </template>
-
-<script setup>
-const people = [
-  {
-    name: 'Lindsay Walton',
-    title: 'Front-end Developer',
-    email: 'lindsay.walton@example.com',
-    role: 'Member'
-  }
-  // More people...
-]
-</script>

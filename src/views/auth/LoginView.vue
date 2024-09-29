@@ -5,10 +5,14 @@ import { ref } from 'vue'
 
 const router = useRouter()
 const loading = ref(false)
+const loginForm = ref({
+  name: '',
+  password: ''
+})
 
 async function onLogin() {
   loading.value = true
-  await useAuthStore().login()
+  await useAuthStore().login(loginForm.value.name, loginForm.value.password)
   loading.value = false
   await router.push({ name: 'dashboard' })
 }
@@ -58,6 +62,7 @@ async function onLogin() {
           <div class="mt-2.5">
             <input
               type="email"
+              v-model="loginForm.name"
               name="email"
               id="email"
               autocomplete="email"
@@ -66,15 +71,15 @@ async function onLogin() {
           </div>
         </div>
         <div class="sm:col-span-2">
-          <label for="email" class="block text-sm font-semibold leading-6 text-gray-900"
-            >Email</label
+          <label for="password" class="block text-sm font-semibold leading-6 text-gray-900"
+            >Password</label
           >
           <div class="mt-2.5">
             <input
-              type="email"
-              name="email"
-              id="email"
-              autocomplete="email"
+              type="password"
+              v-model="loginForm.password"
+              id="password"
+              autocomplete="password"
               class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             />
           </div>
@@ -86,7 +91,7 @@ async function onLogin() {
           type="submit"
           class="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
-          Let's talk
+          Login
         </button>
       </div>
     </div>

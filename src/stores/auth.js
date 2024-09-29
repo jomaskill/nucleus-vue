@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { ref } from 'vue'
 import apiClient from '@/api.js'
 
 export const useAuthStore = defineStore('auth', () => {
@@ -15,11 +16,18 @@ export const useAuthStore = defineStore('auth', () => {
     await fetchUser()
   }
 
+  async function logout() {
+    await apiClient.post('/logout')
+  }
+
   async function fetchUser() {
-    console.log('fetching user')
-    user.value = (await apiClient.get('/user')).data
+    
+    try {
+      user.value = (await apiClient.get('/user'))
+    } catch (e) { /* empty */ }
+
     isAuthenticated.value = !!user.value
   }
 
-  return { login, fetchUser, user, isAuthenticated }
+  return { login, logout, fetchUser, user, isAuthenticated }
 })
